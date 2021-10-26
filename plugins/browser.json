@@ -1,0 +1,36 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-camera": {
+      "PACKAGE_NAME": "finished.goods.loading"
+    },
+    "cordova-plugin-dialogs": {
+      "PACKAGE_NAME": "finished.goods.loading"
+    },
+    "cordova-plugin-inappbrowser": {
+      "PACKAGE_NAME": "finished.goods.loading"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "finished.goods.loading"
+    },
+    "cordova-plugin-vibration": {
+      "PACKAGE_NAME": "finished.goods.loading"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "finished.goods.loading"
+    },
+    "cordova-plugin-x-toast": {
+      "PACKAGE_NAME": "finished.goods.loading"
+    },
+    "phonegap-plugin-barcodescanner": {
+      "PACKAGE_NAME": "finished.goods.loading"
+    }
+  },
+  "dependent_plugins": {}
+}

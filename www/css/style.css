@@ -1,0 +1,32 @@
+body {
+	background-image: url('../img/login wallpaper.jpeg');
+    height: 100%;
+  	background-position: center;
+    background-repeat: no-repeat;
+  	background-attachment: fixed;
+  	background-size: cover;
+  }
+.hide{
+	display: none !important;
+}
+#pallets {
+	padding-top: 10px;
+	font-size: 15px
+}
+.not-connected{
+    background-color: #ff0000 !important;
+    border: none;
+    color: #fff !important;
+    padding: 5px;
+}
+.not-connected h1{
+	font-size: 13px !important;
+}
+#listLogs{
+	margin-top: 5px;
+}
+
+.list-log{
+	margin-bottom: 10px !important;
+	border-bottom: solid 1px #ddd;
+}

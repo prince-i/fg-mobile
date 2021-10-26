@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+    <link rel="shortcut icon" href="favicon.ico" type="image/ico">
+    <link rel="icon" href="favicon.ico" type="image/ico">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="lib/jquery.mobile-1.4.5.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/mdb.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/index.css">
+    <title> FG LOADING SYSTEM</title>
+    <style type="text/css">
+
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <!-- LOG IN FORM -->
+        <div data-role="page" id="login">
+            <div data-role="header" class="purple-gradient text-white" style="height: 44px;">
+                <img src="img/favicon.ico" class="ui-btn-left" width="35" height="35">
+                <h1 s><b>FG LOADING</b></h1>
+            </div>
+            <div data-role="main" class="ui-content">
+                <div class="ui-grid-solo text-center">
+                    <h3>LOGIN</h3>
+                </div>
+                <div class="ui-grid-solo">
+                    <label>PASSWORD:</label>
+                    <input type="password" name="password" id="password" class="form-control purple-text" value="" placeholder="Type or Scan your password..">
+                    <input type="hidden" name="username" id="username">
+                    <div class="ui-block-a">
+                        <button class="ui-shadow ui-btn ui-corner-all purple-gradient text-white" id="btn-login">LOGIN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END LOGIN -->
+
+        <!-- MAIN MENU -->
+        <div data-role="page" id="main-menu" style="background-image: url('img/login wallpaper.jpeg');">
+            <div data-role="header" class="purple-gradient text-white" style="height: 44px;">
+                <img src="img/favicon.ico" class="ui-btn-left" width="35" height="35">
+                <h1><b>FG LOADING</b></h1>
+            </div>
+            <div data-role="main" class="ui-content" style="margin-left: 30px;margin-top: 30px;">
+                <div class="ui-grid-solo text-center">
+                    <button id="btn-scan-new" class="purple-gradient text-white" style="width: 250px;height: 60px;"> SCAN NEW CONTAINER</button>
+                </div>
+                <div class="ui-grid-solo text-center">
+                    <button id="btn-browse-cont" class="purple-gradient text-white" style="width: 250px;height: 80px;"> PARTIALLY LOADED  <br> CONTAINERS</button>
+                </div>
+                <div class="ui-grid-solo text-center">
+                    <button id="btn-back-login" class="purple-gradient text-white" style="width: 250px;height: 60px;"> LOG OUT</button>
+                </div>
+                <div class="ui-grid-solo">
+                </div>
+            </div>
+
+            <!-- PARTIALLY LOADED CONTAINER POPUP  -->
+            <div data-role="popup" id="container_popup" data-dismissible="false" class="card purple-gradient text-white">
+                <h1 class="card-title text-white">Select Partially Loaded Container</h1>
+                <div role="main" class="card-body">
+                    <ul data-role="listview" data-inset="true" id="partially_loaded">
+
+                    </ul>
+                </div>
+                <hr>
+                <div style="text-align: right">
+                    <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini mdb-color darken-3 text-white" data-rel="back">Cancel</a>
+                </div>
+            </div>
+            <!-- END OF PARTIALLY LOADED CONTAINER POPUP  -->
+
+        </div>
+        <!-- END MAIN MENU -->
+
+
+
+        <!-- HOME - PALLETS -->
+        <div data-role="page" id="home">
+            <!-- connection -->
+            <div class="not-connected">
+                <h1>Not Connected</h1>
+            </div>
+            <!-- end connection -->
+
+            <!-- MAIN PAGE -->
+            <div data-role="header" class="mdb-color darken-3 text-white">
+                <img src="img/favicon.ico" class="ui-btn-left" width="35" height="35">
+                <h1><button id="btn-home" class="purple-gradient text-white" data-icon="home" style="margin-top: -5px;margin-bottom: -5px;">HOME</button></h1>
+                <button id="btn-logout" data-icon="power" class="ui-btn-right purple-gradient text-white">LOGOUT</button>
+            </div>
+
+            <div data-role="main" class="ui-content">
+                <div class="ui-grid-solo">
+                    <label for="container_no">Container #:</label>
+                    <input class="form-control purple-text" type="text" name="container_no" id="container_no" value="" placeholder="SCAN BARCODE..." readonly>
+                </div>
+                <div class="ui-grid-b">
+                    <div class="ui-block-a">
+                        <input type="hidden" id="pos-left" value="0" placeholder="left">
+                        <input type="hidden" id="pos-right" value="0" placeholder="right">
+                        <label for="position">Position:</label>
+                        <input type="text" class="form-control purple-text" name="position" id="position" value="">
+                    </div>
+                    <div class="ui-block-b">
+                        <label for="pallet_no">Pallet #:</label>
+                        <input type="text" class="form-control purple-text" name="pallet_no" id="pallet_no" value="" placeholder="SCAN BARCODE...">
+                    </div>
+                    <div class="ui-block-c">
+                        <label for="remarks">Remarks:</label>
+                        <input type="text" class="form-control purple-text" name="remarks" id="remarks" value="">
+                        <input type="hidden" name="additional" id="additionalstat" value="">
+                        <input type="hidden" name="polysize1" id="polysize1" value="">
+                        <input type="hidden" name="polyqty1" id="polyqty1" value="">
+                    </div>
+                </div>
+
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <button class="ui-shadow ui-btn ui-corner-all text-white" id="btn-pallet" style="background-color:rgba(156, 39, 176, 0.7);">SCAN PALLET</button>
+                    </div>
+                    <div class="ui-block-b">
+                        <button class="ui-shadow ui-btn ui-corner-all text-white" id="btn-searchpallet" style="background-color:rgba(3, 169, 244, 0.7);">SEARCH PALLET</button>
+                    </div>
+                </div>
+
+                <div data-role="header" class="mdb-color darken-3 text-white" style="height: 45px;">
+                    <a data-icon="bullets" id="logsCount" class="purple-gradient text-white" style="padding-bottom: 5px;">0</a>
+                    <h3 id="pallets">PALLETS</h3>
+                    <button id="btn-refresh" data-icon="refresh" class="ui-btn-right purple-gradient text-white" style="padding-bottom: 5px;">REFRESH</button>
+                </div>
+                <!-- PALLETS LIST -->
+                <div class="ui-grid-solo" id="logContainer">
+                    <ul data-role="listview" data-inset="true" id="listLogs">
+
+                    </ul>
+                </div>
+                <!-- END PALLETS LIST  -->
+
+                <!-- REMARKS POP UP  -->
+                <div data-role="popup" id="remarks_popup" data-dismissible="false" class="card purple-gradient text-white">
+                    <form>
+                        <div style="padding: 20px 20px;">
+
+                            <h2 class="card-title">Position & Remarks</h2>
+                            <div class="card-body">
+                                <label for="add"> <input type="checkbox" name="add" class="checkedAdd purple-text" id="checkedAdd"> Additional </label>
+                                <label for="pos" class="select">Position:</label>
+                                <select name="pos" id="pos">
+                             <option value="LEFT">LEFT</option>
+                             <option value="RIGHT">RIGHT</option>
+                         </select>
+
+                                <label>Poly Size </label>
+                                <select name="polsize" id="polysize">
+                                <option value="S">S</option>
+                                <option value="M">M</option>
+                                <option value="L">L</option>
+                                <option value="XL">XL</option>
+                                 <option value="Box">Box</option>
+                            </select>
+                                <label> Quantity of Poly </label>
+                                <input type="number" name="polyqty" id="polyqty" class="purple-text form-control">
+                                <label> Others: </label>
+                                <input type="text" name="rem1" id="rem1" value="" class="purple-text form-control">
+                                <a href="#" class="ui-btn ui-btn-b ui-btn-icon-left ui-icon-check mdb-color darken-3" id="btn-done" data-rel="back" data-transition="flow">DONE</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- END REMARKS POP UP -->
+
+                <!-- SEARCH PALLET POP UP  -->
+                <div data-role="popup" id="searchpallet_popup" data-dismissible="true" data-overlay-theme="b" data-theme="b" class="card purple-gradient text-white">
+                    <h1 class="card-title text-white">Search Pallet</h1>
+                    <div role="main" class="card-body">
+                        <input type="text" name="search_pallet" id="search_pallet" value="" class="form-control purple-text" style="background-color: white;">
+                        <div style="text-align: right">
+                            <a href="#" id="btn-searchpalletpopup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-update ui-mini danger-color-dark" data-rel="back" data-transition="flow">Search</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- END SEARCH PALLET POP UP  -->
+                <!-- DELETE REMARKS POP UP -->
+                <div data-role="popup" id="deletepallet_popup" data-dismissible="true" data-overlay-theme="b" data-theme="b" class="card purple-gradient text-white">
+                    <h1 class="card-title text-white">Delete Pallet</h1>
+                    <div role="main" class="card-body">
+                        <input type="hidden" id="log-id">
+                        <h3 class="ui-title" style="text-align: center">Are you sure you want to delete this record?</h3>
+                        <p style="text-align: center">This action cannot be undone.</p>
+                        <hr>
+                        <div class="ui-field-contain">
+                            <label for="delete_rem">Remarks: </label>
+                            <input type="text" name="update_rem" id="delete_rem" value="" class="form-control purple-text" style="background-color: white;">
+                        </div>
+                    </div>
+                    <hr>
+                    <div style="text-align: right">
+                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini mdb-color darken-3 text-white" data-rel="back">Cancel</a>
+                        <a href="#" id="btn-deleteonDB" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-update ui-mini danger-color-dark" data-rel="back" data-transition="flow">Okay</a>
+                    </div>
+                </div>
+                <!-- END DELETE POP UP -->
+
+                <!-- SAVE PALLET POP UP -->
+                <div data-role="popup" id="pallet_popup" data-dismissible="true" data-overlay-theme="b" data-theme="b" class="card purple-gradient">
+
+                    <h1 class="card-title text-white">Update Pallet Information</h1>
+                    <div role="main" class="card-body">
+                        <h2>Container #: <span id="del_c"></span></h2>
+                        <div class="ui-field-contain">
+                            <label for="update_pallet_no">Pallet #:</label>
+                            <input type="text" name="update_pallet_no" id="update_pallet_no" value="" class="form-control purple-text" readonly>
+                            <input type="hidden" name="update_pallet_no2" id="update_pallet_no2" value="" class="ui-grey-text">
+                            <a href="#" class="ui-btn ui-btn-b ui-btn-icon-top ui-icon-camera ui-mini ui-btn-scan-update-pallet mdb-color darken-3" id="btn-update-pallet">SCAN</a>
+                        </div>
+                        <div class="ui-field-contain">
+                            <label for="update_pos">Position: </label>
+                            <select name="update_pos" id="update_pos">
+                                        <option value="LEFT">LEFT</option>
+                                        <option value="RIGHT">RIGHT</option>
+                                    </select>
+                        </div>
+                        <div class="ui-field-contain">
+
+                            <label class="text-center"> OTHER DETAILS</label> POLY SELECTION
+                            <label>Poly Size </label>
+                            <select name="update_poly" id="update_poly">
+                                         <option value="S">S</option>
+                                        <option value="M">M</option>
+                                        <option value="L">L</option>
+                                         <option value="XL">XL</option>
+                                          <option value="Box">Box</option>
+                                    </select>
+                            <label>Quantity of Poly</label>
+                            <input type="number" name="update_qty" id="update_qty" class="form-control purple-text" style="background-color: white;">
+                            <label>Others:</label>
+                            <input type="text" name="update_rem" id="update_rem" value="" class="form-control purple-text" style="background-color: white;">
+                            <label for="add"> <input type="checkbox" name="add" id="addcheck"> Additional </label>
+                        </div>
+
+                        <hr>
+                        <div style="text-align: right">
+                            <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b ui-mini secondary-color-dark" data-rel="back">Cancel</a>
+                            <a href="#" id="btn-delete" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-delete ui-mini danger-color-dark" data-rel="back" data-transition="flow">Delete</a>
+                            <a href="#" id="btn-edit" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-update ui-mini success-color-dark" data-rel="back" data-transition="flow">Update</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- SAVE PALLET POP UP -->
+            </div>
+        </div>
+    </div>
+
+    <script src="lib/jquery-2.1.4.min.js"></script>
+    <script src="lib/jquery.mobile-1.4.5.min.js"></script>
+    <script src="lib/moment.min.js"></script>
+
+    <script type="text/javascript" src="js/popper.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var link = 'http://172.25.112.171:1000/fgls-api/index.php';
+            var changePos = false;
+            var isStart = false;
+            var ctr = 1;
+            var lastSession = {
+                container_no: '',
+                position: '',
+                location: '',
+                pallet_no: '',
+                polysize: '',
+                polyqty: '',
+                remarks: '',
+                user: '',
+            };
+
+            if (localStorage.getItem("logData") != null) {
+                populateLogs();
+            }
+
+            loadLastSession();
+            reevaluatePosition();
+
+            setTimeout(function() {
+                $.post(link, {
+                    request: 'checkConnection'
+                }, function(response) {
+                    console.log(response);
+                    if (response.trim() == 'connected') {
+                        $('.not-connected').addClass('hide');
+                        window.plugins.toast.showWithOptions({
+                            message: "Connected",
+                            duration: "short",
+                            position: "bottom",
+                        });
+
+                    }
+                });
+            }, 1000);
+
+
+            $(document).on('click', '#btn-scan-new', function() {
+                // if($(this).text() == 'SCAN CONTAINER'){
+                //    $(this).addClass('scanning').text('CLEAR');
+                // }
+
+                if ($("#container_no").val() == "") {
+                    $('#container_no').val('');
+                    $('#position').val('');
+                    $('#pallet_no').val('');
+                    $('#remarks').val('');
+                    scanContainer();
+                }
+                // else{
+                //     var r = confirm('Scan NEW CONTAINER?');
+                //     if(r == true){
+                //         $("#container_no").val("");
+                //         $("#position").val("");
+                //         $("#pallet_no").val("");
+                //         $("#remarks").val("");
+                //         scanContainer();
+                //     }
+                // }
+
+            });
+
+            $(document).on('click', '#btn-pallet', function() {
+                $('#remarks').val('');
+                $('#polyqty1').val('');
+                $('#pos').selectmenu().selectmenu('refresh', true);
+
+                scanPallet();
+            });
+
+            $(document).on('click', '#btn-done', function() {
+                saveRemarks();
+
+            });
+
+            $(document).on('click', '#btn-remarks-popup', function() {
+                reevaluatePosition();
+            });
+
+            $(document).on('click', '#btn-refresh', function() { //refresh page
+                $("#pallet_no").val("");
+                $("#remarks").val("");
+                $("#position").val("");
+                var x = $('#container_no').val();
+                if (x != "") {
+                    populateLogs();
+                } else {
+                    location.reload();
+                }
+                // 
+            });
+
+            $(document).on('click', '.list-log', function() {
+                var id = $(this).data('log-id');
+                $('#log-id').val(id);
+
+                $("#del_c").text($(this).data('c'));
+                $("#update_pallet_no").val($(this).data('p'));
+                $('#update_pos').val($(this).data('pos')).attr('selected', true).siblings('option').removeAttr('selected');
+                $('#update_pos').selectmenu().selectmenu('refresh', true);
+
+                if ($(this).data('r') == "") {
+                    $("#update_rem").val("rev1");
+                } else {
+                    $("#update_rem").val($(this).data('r'));
+                }
+
+                $('#pallet_popup').popup('open');
+            });
+
+            $(document).on('click', '#btn-delete', function() {
+                scanPalletDelete();
+            });
+
+            $(document).on('click', '#btn-update-pallet', function() {
+                cordova.plugins.barcodeScanner.scan(
+                    function(result) {
+                        if (!result.cancelled) {
+                            $('#update_pallet_no').val(result.text);
+                        }
+                    },
+                    function(error) {
+                        alert("Scanning failed: " + error);
+                    }, {
+                        showTorchButton: true,
+                        prompt: "Please SCAN PALLET BARCODE",
+                        resultDisplayDuration: 500,
+                        disableSuccessBeep: false
+                    }
+                );
+            });
+
+            $(document).on('click', '#btn-edit', function() {
+                var id = $('#log-id').val();
+                var p = $('#update_pallet_no').val();
+                var pos = $('#update_pos').val();
+                var polysize = $('#update_poly').val();
+                var polyqty = $('#update_qty').val();
+                var rem = $('#update_rem').val();
+                var datechanged = moment().format('YYYY/MM/DD');
+                var timechanged = moment().format('HH:mm:ss');
+                var user = $('#username').val();
+
+                var data = {
+                    id: id,
+                    pallet_no: p,
+                    pos: pos,
+                    rem: rem,
+                    polysize: polysize,
+                    polyqty: polyqty,
+                    status: "Changed",
+                    datechanged: datechanged,
+                    timechanged: timechanged,
+                    user: user
+                };
+
+                $.post(link, {
+                    request: 'savePalletonHistory',
+                    request1: 'saveonHistory',
+                    data: data
+                }, function(response) {
+                    console.log(response);
+                    if (response.trim() == 'success') {
+                        $('#update_pallet_no').val('');
+                        populateLogs();
+                        window.plugins.toast.showWithOptions({
+                            message: "Successfully Updated",
+                            duration: "short",
+                            position: "bottom",
+                        });
+
+                    } else {
+                        $('#update_pallet_no').val('');
+                        populateLogs();
+                        window.plugins.toast.showWithOptions({
+                            message: "Update Failed",
+                            duration: "short",
+                            position: "bottom",
+                        });
+                    }
+                });
+
+            });
+
+            $(document).on('click', '#password', function() {
+                cordova.plugins.barcodeScanner.scan(
+                    function(result) {
+                        if (!result.cancelled) {
+                            $('#password').val(result.text);
+                            tryLogin();
+                        }
+                    },
+                    function(error) {
+                        alert("Scanning failed: " + error);
+                    }, {
+                        showTorchButton: true,
+                        prompt: "Please SCAN your PASSWORD",
+                        resultDisplayDuration: 500,
+                        disableSuccessBeep: false
+                    }
+                );
+            });
+
+            $(document).on('click', '#btn-login', function() {
+                var password = $('#password').val();
+
+                if (password == "") {
+                    window.plugins.toast.showWithOptions({
+                        message: "PLEASE FILL UP PASSWORD!",
+                        duration: "short",
+                        position: "bottom",
+                    });
+                } else {
+                    tryLogin();
+                }
+            });
+
+            $(document).on('click', '#btn-logout', function() {
+                $('#password').val('');
+                $('#username').val('');
+                $('#container_no').val('');
+                $('#position').val('');
+                $('#remarks').val('');
+                $('#pallet_no').val('');
+                $(':mobile-pagecontainer').pagecontainer('change', '#login');
+            });
+
+            $(document).on('click', '#btn-back-login', function() {
+                $('#username').val("");
+                $(':mobile-pagecontainer').pagecontainer('change', '#login');
+                $('#password').val("");
+            });
+
+            function tryLogin() {
+
+                var password = $('#password').val();
+                $.post(link, {
+                    request: 'loginMobile',
+                    password: password
+                }, function(response) {
+                    console.log(response);
+                    if (response.trim() != 'false') {
+                        $('#username').val(response);
+                        $(':mobile-pagecontainer').pagecontainer('change', '#main-menu');
+                    } else {
+                        window.plugins.toast.showWithOptions({
+                            message: "INVALID PASSWORD!",
+                            duration: "short",
+                            position: "bottom",
+                        });
+                    }
+                });
+            }
+
+            $(document).on('click', '#btn-scan-new', function() {
+                scanContainer();
+                $(':mobile-pagecontainer').pagecontainer('change', '#home');
+            });
+
+            function scanContainer() {
+
+                cordova.plugins.barcodeScanner.scan(
+                    function(result) {
+                        if (!result.cancelled) {
+                            $('#container_no').val(result.text);
+                            //CONTAINER SESSION
+                            if (localStorage.getItem("lastSession") != null) {
+                                var x = JSON.parse(localStorage.getItem('lastSession'));
+                                x.container_no = result.text;
+                                localStorage.setItem('lastSession', JSON.stringify(x));
+                            } else {
+                                lastSession.container_no = result.text;
+                                localStorage.setItem('lastSession', JSON.stringify(lastSession));
+                            }
+
+                            scanPallet();
+                        }
+                    },
+                    function(error) {
+                        alert("Scanning failed: " + error);
+                    }, {
+                        showTorchButton: true,
+                        prompt: "Please SCAN CONTAINER BARCODE",
+                        resultDisplayDuration: 500,
+                        disableSuccessBeep: false
+                    }
+                );
+            }
+
+
+            $(document).on('click', '#btn-browse-cont', function() {
+                $.post(link, {
+                    request: 'containerlist',
+                }, function(page) {
+                    console.log(page);
+                    $('#partially_loaded').html(page);
+                    $('#partially_loaded').listview().listview('refresh');
+                    window.plugins.toast.showWithOptions({
+                        message: "Data Refreshed!",
+                        duration: "short",
+                        position: "bottom",
+                    });
+
+
+                });
+                $("#container_popup").popup("open");
+            });
+
+            $(document).on('click', '.btn-selectcont', function() {
+                var str = $(this).attr('href');
+                var res = str.substring(1);
+                // alert(res);
+                $('#container_no').val(res);
+                $(':mobile-pagecontainer').pagecontainer('change', '#home');
+                populateLogs();
+            });
+            $(document).on('click', '#btn-home', function() {
+                $(':mobile-pagecontainer').pagecontainer('change', '#main-menu');
+            });
+
+            function scanPallet() {
+                if ($('#container_no').val() != '') {
+                    cordova.plugins.barcodeScanner.scan(
+                        function(result) {
+                            if (!result.cancelled) {
+                                $('#pallet_no').val(result.text);
+                                //PALLET SESSION
+                                if (localStorage.getItem("lastSession") != null) {
+                                    var x = JSON.parse(localStorage.getItem('lastSession'));
+                                    x.pallet_no = result.text;
+                                    localStorage.setItem('lastSession', JSON.stringify(x));
+                                } else {
+                                    lastSession.pallet_no = result.text;
+                                    localStorage.setItem('lastSession', JSON.stringify(lastSession));
+                                }
+
+                                $("#remarks_popup").popup("open");
+                            }
+                        },
+                        function(error) {
+                            alert("Scanning failed: " + error);
+                        }, {
+                            showTorchButton: true,
+                            prompt: "Please SCAN PALLET BARCODE",
+                            resultDisplayDuration: 500,
+                            disableSuccessBeep: false
+                        }
+                    );
+                } else {
+                    alert('Please, SCAN CONTAINER FIRST!');
+                }
+            }
+            // function scanPallet(){
+            //   if($('#container_no').val() != ''){
+            //     var pallet = $('#pallet_no').val();
+            //     $("#remarks_popup").popup("open");
+            //        }
+            // }
+            $(document).on('click', '#btn-searchpallet', function() {
+                $("#searchpallet_popup").popup("open");
+
+
+            });
+
+            $(document).on('click', '#btn-searchpalletpopup', function() {
+                var search_pallet = $('#search_pallet').val();
+                var container_no = $('#container_no').val()
+                $.post(link, {
+                    request: 'searchpalletondb',
+                    pallet_no: search_pallet,
+                    container_no: container_no
+                }, function(response) {
+                    console.log(response);
+                    if (response.trim() != 'false') {
+                        var container_no = response.split(",")[0];
+                        var pallet_no = response.split(",")[1];
+                        // var location = response.split(",")[2];
+                        var pos = response.split(",")[3];
+                        var poly_size = response.split(",")[4];
+                        var poly_qty = response.split(",")[5];
+                        var remarks = response.split(",")[6];
+                        var dt = response.split(",")[7];
+                        var id_scanned = response.split(",")[8];
+                        var id = response.split(",")[9];
+                        var id = $('#log-id').val(id);
+                        $('#del_c').text(container_no);
+                        $('#update_pallet_no').val(pallet_no);
+                        if (pos == 'LEFT') {
+                            $('#update_pos').val('LEFT').attr('selected', true).siblings('option').removeAttr('selected');
+                            $('#update_pos').selectmenu().selectmenu('refresh', true);
+                        } else {
+                            $('#update_pos').val('RIGHT').attr('selected', true).siblings('option').removeAttr('selected');
+                            $('#update_pos').selectmenu().selectmenu('refresh', true);
+                        }
+
+                        if (poly_size == 'M') {
+                            $('#update_poly').val('M').attr('selected', true).siblings('option').removeAttr('selected');
+                            $('#update_poly').selectmenu().selectmenu('refresh', true);
+                        } else if (poly_size == 'L') {
+                            $('#update_poly').val('L').attr('selected', true).siblings('option').removeAttr('selected');
+                            $('#update_poly').selectmenu().selectmenu('refresh', true);
+                        } else if (poly_size == 'XL') {
+                            $('#update_poly').val('XL').attr('selected', true).siblings('option').removeAttr('selected');
+                            $('#update_poly').selectmenu().selectmenu('refresh', true);
+                        } else {
+                            $('#update_poly').val('Box').attr('selected', true).siblings('option').removeAttr('selected');
+                            $('#update_poly').selectmenu().selectmenu('refresh', true);
+                        }
+                        $('#update_qty').val(poly_qty);
+                        $('#update_rem').val(remarks);
+
+                        $("#pallet_popup").popup("open");
+                        $('#search_pallet').val('');
+                    } else {
+                        $('#search_pallet').val('');
+                        window.plugins.toast.showWithOptions({
+                            message: "Pallet does not exist!",
+                            duration: "short",
+                            position: "bottom",
+                        });
+                    }
+                });
+            });
+            $(document).on('click', '#btn-deleteonDB', function() {
+                var id = $('#log-id').val();
+                var remarks = $('#delete_rem').val();
+                var user = $('#username').val();
+                var datechanged = moment().format('YYYY/MM/DD');
+                var timechanged = moment().format('HH:mm:ss');
+                $.post(link, {
+                    request: 'deletePalletonDB',
+                    request1: 'saveHistorydel',
+                    id: id,
+                    remarks: remarks,
+                    datechanged: datechanged,
+                    timechanged: timechanged,
+                    user: user
+                }, function(response) {
+                    console.log(response);
+                    if (response.trim() == 'success') {
+                        populateLogs();
+                        window.plugins.toast.showWithOptions({
+                            message: "Successfully Deleted",
+                            duration: "short",
+                            position: "bottom",
+                        });
+
+                    }
+                });
+            });
+
+            function scanPalletDelete() {
+                var id = $('#log-id').val();
+
+                cordova.plugins.barcodeScanner.scan(
+                    function(result) {
+                        if (!result.cancelled) {
+                            $('#update_pallet_no2').val(result.text);
+                            var pallet1 = $('#update_pallet_no').val();
+                            var pallet2 = $('#update_pallet_no2').val();
+
+                            if (pallet1 == pallet2) {
+                                $.post(link, {
+                                    request: 'deletePallet',
+                                    id: id
+                                }, function(response) {
+                                    console.log(response);
+                                    if (response.trim() == 'success') {
+                                        $('#deletepallet_popup').popup('open');
+                                        populateLogs();
+                                        $('#update_pallet_no2').val("");
+                                        window.plugins.toast.showWithOptions({
+                                            message: "Successfully Deleted",
+                                            duration: "short",
+                                            position: "bottom",
+                                        });
+
+                                    }
+                                });
+                            }
+                        }
+                    },
+                    function(error) {
+                        alert("Scanning failed: " + error);
+                    }, {
+                        showTorchButton: true,
+                        prompt: "Please SCAN PALLET BARCODE",
+                        resultDisplayDuration: 500,
+                        disableSuccessBeep: false
+                    }
+                );
+                var pallet1 = $('#update_pallet_no').val();
+                var pallet2 = $('#update_pallet_no2').val();
+
+                if (pallet1 == pallet2) {
+                    $.post(link, {
+                        request: 'deletePallet',
+                        id: id
+                    }, function(response) {
+                        console.log(response);
+                        if (response.trim() == 'success') {
+                            $('#deletepallet_popup').popup('open');
+                            populateLogs();
+                            $('#update_pallet_no2').val("");
+                            window.plugins.toast.showWithOptions({
+                                message: "Successfully Deleted",
+                                duration: "short",
+                                position: "bottom",
+                            });
+
+                        }
+                    });
+                }
+            }
+
+            function saveRemarks() {
+                if ($('.checkedAdd').prop("checked") == true) {
+                    $('#additionalstat').val("Additional");
+                }
+                var container_no = $('#container_no').val();
+                var position = $('#pos').val();
+                var pallet_no = $('#pallet_no').val();
+                // ADD LOGS POLY SIZE AND QUNATITIY
+                var polysize = $('#polysize').val();
+                var polyqty = $('#polyqty').val();
+                // END 
+                var remarks = $('#rem1').val();
+                var user = $('#username').val();
+
+                $('#position').val(position);
+                $('#remarks').val(remarks);
+                $('#polysize1').val(polysize);
+                $('#polyqty1').val(polyqty);
+
+                // var addstatus = $('#additionalstat').val();
+
+                // POSITION & REMARKS SESSION
+                if (localStorage.getItem("lastSession") != null) {
+                    var x = JSON.parse(localStorage.getItem('lastSession'));
+                    x.container_no = container_no;
+                    x.position = position;
+                    x.pallet_no = pallet_no;
+                    x.polysize = polysize;
+                    x.polyqty = polyqty;
+                    x.remarks = remarks;
+                    // x.status = addstatus;
+                    x.user = user;
+                    localStorage.setItem('lastSession', JSON.stringify(x));
+
+                } else {
+                    lastSession.container_no = container_no;
+                    lastSession.position = position;
+                    lastSession.pallet_no = pallet_no;
+                    lastSession.remarks = remarks;
+                    localStorage.setItem('lastSession', JSON.stringify(lastSession));
+                }
+                addLog();
+                reevaluatePosition();
+
+                $('#polyqty').val("");
+                $('#rem1').val("");
+                $("#checkedAdd").prop("checked", false);
+
+            }
+
+            function addLog() {
+                var container_no = $('#container_no').val();
+                var position = $('#position').val();
+                var pallet_no = $('#pallet_no').val();
+                // ADD LOGS POLY SIZE AND QUNATITIY
+                var polysize = $('#polysize1').val();
+                var polyqty = $('#polyqty1').val();
+                // END 
+                var remarks = $('#remarks').val();
+                var username = $('#username').val();
+                var date = moment().format('YYYY/MM/DD');
+                var time = moment().format('HH:mm:ss');
+                var status = $('#additionalstat').val();
+
+
+
+                var obj = {
+                    container_no: container_no,
+                    position: position,
+                    pallet_no: pallet_no,
+                    polysize: polysize,
+                    polyqty: polyqty,
+                    remarks: remarks,
+                    name: username,
+                    date: date,
+                    time: time,
+                    status: status
+                };
+
+                var a = [];
+                a = JSON.parse(localStorage.getItem('logData'));
+
+                if (a == null) {
+                    a = [];
+                }
+
+                a.push(obj);
+                localStorage.setItem('logData', JSON.stringify(a));
+
+                //PALLET NO & REMARKS SESSION
+                if (localStorage.getItem("lastSession") != null) {
+                    var x = JSON.parse(localStorage.getItem('lastSession'));
+                    x.pallet_no = pallet_no;
+                    x.remarks = remarks;
+                    localStorage.setItem('lastSession', JSON.stringify(x));
+                } else {
+                    lastSession.pallet_no = pallet_no;
+                    lastSession.remarks = remarks;
+                    localStorage.setItem('lastSession', JSON.stringify(lastSession));
+                }
+
+                $.post(link, {
+                    request: 'addLog',
+                    logs: obj
+                }, function(response) {
+                    console.log(response);
+                    if (response.trim() == 'success') {
+
+                        populateLogs();
+
+                        window.plugins.toast.showWithOptions({
+                            message: "PALLET ADDED!",
+                            duration: "short",
+                            position: "bottom",
+                        });
+
+                    } else {
+                        populateLogs();
+                        window.plugins.toast.showWithOptions({
+                            message: "PALLET ALREADY EXIST!",
+                            duration: "short",
+                            position: "bottom",
+                        });
+                    }
+                });
+                $("#pallet_no").val("");
+                $("#remarks").val("");
+                $("#position").val("");
+                ctr += 1;
+                $('#additionalstat').val("");
+            }
+
+            function populateLogs() {
+                var cont = $('#container_no').val();
+                $.post(link, {
+                    request: 'getLogs',
+                    container: cont
+                }, function(page) {
+                    console.log(page);
+                    $('#listLogs').html(page);
+                    $('#listLogs').listview().listview('refresh');
+                    $("#logsCount").text($('.list-log').length);
+                    window.plugins.toast.showWithOptions({
+                        message: "Data Refreshed!",
+                        duration: "short",
+                        position: "bottom",
+                    });
+                });
+
+            }
+
+            function loadLastSession() {
+                if (localStorage.getItem("lastSession") != null) {
+                    var x = JSON.parse(localStorage.getItem('lastSession'));
+                    $('#container_no').val(x.container_no);
+                    $('#position').val(x.position);
+                    $('#pallet_no').val(x.pallet_no);
+                    $('#remarks').val(x.remarks);
+                }
+            }
+
+            function reevaluatePosition() {
+                var a = [];
+                if (localStorage.getItem("logData") != null) {
+                    a = JSON.parse(localStorage.getItem('logData'));
+
+                    if (a == null) {
+                        $('#pos').val('LEFT').attr('selected', true).siblings('option').removeAttr('selected');
+                        $('#pos').selectmenu().selectmenu('refresh', true);
+                    } else {
+
+                        var last_idx = a.length - 1;
+                        var last_position = a[last_idx].position;
+                        var last_container = a[last_idx].container_no;
+                        // console.log(last_position);
+                        console.log('Change pos: ' + changePos + ' - ' + ctr);
+
+                        if (changePos) {
+                            if ($('#container_no').val() != "") {
+                                if ($('#container_no').val() == last_container) {
+                                    if (last_position == 'RIGHT') {
+                                        $('#pos').val('LEFT').attr('selected', true).siblings('option').removeAttr('selected');
+                                        $('#pos').selectmenu().selectmenu('refresh', true);
+                                    } else {
+                                        $('#pos').val('RIGHT').attr('selected', true).siblings('option').removeAttr('selected');
+                                        $('#pos').selectmenu().selectmenu('refresh', true);
+                                    }
+                                } else {
+                                    $('#pos').val('LEFT').attr('selected', true).siblings('option').removeAttr('selected');
+                                    $('#pos').selectmenu().selectmenu('refresh', true);
+                                }
+                            } else {
+                                $('#pos').val('LEFT').attr('selected', true).siblings('option').removeAttr('selected');
+                                $('#pos').selectmenu().selectmenu('refresh', true);
+                            }
+
+                            changePos = false;
+                            //dont allow change position
+                        }
+
+                    }
+
+
+                    if (ctr > 2) { //reset
+                        ctr = 1;
+                    }
+
+                    if (ctr == 2) { //allow change position
+                        changePos = true;
+                    }
+                }
+            }
+
+        });
+    </script>
+    <!-- <script type="text/javascript" src="js/index.js"></script> -->
+</body>
+
+</html>
